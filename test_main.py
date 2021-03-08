@@ -19,7 +19,6 @@ def client():
     client = main.APP.test_client()
 
     yield client
-    assert False
 
 
 
