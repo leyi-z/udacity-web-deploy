@@ -1,11 +1,6 @@
+### Info
 
-### General Info
-
-
-#### The external IP of the service
-
-Below is the external ip of the service:
-`ab6db219ddfde4818b6cda0ff9e8caa1-790306849.us-east-2.elb.amazonaws.com`
+The app is not running anywhere currently, so it can only be accessed locally.
 
 
 
@@ -18,7 +13,7 @@ Below is the external ip of the service:
 - returns 'Healthy' if it's working
 - an example test: 
 ```
-curl --request GET http://ab6db219ddfde4818b6cda0ff9e8caa1-790306849.us-east-2.elb.amazonaws.com/
+curl --request GET http://localhost:8080/
 ```
 
 
@@ -28,8 +23,9 @@ curl --request GET http://ab6db219ddfde4818b6cda0ff9e8caa1-790306849.us-east-2.e
 - returns a JWT based on a secret
 - an example test: 
 ```
-export TOKEN=`curl -d '{"email":"leyis_test@gmail.com","password":"test123"}' -H "Content-Type: application/json" -X POST ab6db219ddfde4818b6cda0ff9e8caa1-790306849.us-east-2.elb.amazonaws.com/auth  | jq -r '.token'`
+export TOKEN=`curl --data '{"email":"leyis_test@gmail.com","password":"test123"}' --header "Content-Type: application/json" -X POST localhost:8080/auth  | jq -r '.token'`
 ```
+- to see the token: `echo $TOKEN`
 
 
 #### GET `/contents`
@@ -38,16 +34,5 @@ export TOKEN=`curl -d '{"email":"leyis_test@gmail.com","password":"test123"}' -H
 - returns the un-encrypted version of the token
 - an example test:
 ```
-curl --request GET 'ab6db219ddfde4818b6cda0ff9e8caa1-790306849.us-east-2.elb.amazonaws.com/contents' -H "Authorization: Bearer ${TOKEN}" | jq
+curl --request GET 'http://localhost:8080/contents' -H "Authorization: Bearer ${TOKEN}" | jq .
 ```
-
-
-
-
-
-
-
-
-
-
-
